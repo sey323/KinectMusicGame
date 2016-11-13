@@ -31,7 +31,7 @@ public class PrayMovie : MonoBehaviour {
         try
         {
             //動画スキップと動画終了判定
-            if (Input.GetKey("space") || !movieFiles.isPlaying || Gesture.RightHandRising)
+            if (Input.GetKey("space") || !movieFiles.isPlaying || Gesture.LoveAndPiece)
             {
                 Gesture.HandCrossing = false;
                 GameController.Play();

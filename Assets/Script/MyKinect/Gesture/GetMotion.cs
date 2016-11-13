@@ -32,6 +32,7 @@ public class GetMotion : MonoBehaviour
                     if (CrossHitCheck(5, 7, 10, 12))
                     {
                         //print("Love And Piece");
+                        Gesture.LoveAndPiece = true;
                     }
                     else
                     {

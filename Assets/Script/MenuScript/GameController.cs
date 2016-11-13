@@ -26,14 +26,6 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        //Menu画面
-        if (nowSceneName == "Menu")
-        {
-            skipFlag = false;
-            storyFlag = false;
-            //clearFlag = false;
-            totalScore = 0;
-        }
         //GameContorollerが存在していたら削除
         if (!created)
         {
@@ -55,7 +47,14 @@ public class GameController : MonoBehaviour {
         Gesture.setGesturefalse();
         clearFlag = false;
 
-
+        //Menu画面
+        /*
+        if (nowSceneName == "Menu")
+        {
+            skipFlag = false;
+            storyFlag = false;
+            totalScore = 0;
+        }*/
         //Easyモードのとき
         if (nowSceneName == "GameModeEasy")
         {

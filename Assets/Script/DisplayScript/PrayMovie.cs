@@ -33,7 +33,7 @@ public class PrayMovie : MonoBehaviour {
             //動画スキップと動画終了判定
             if (Input.GetKey("space") || !movieFiles.isPlaying || Gesture.LoveAndPiece)
             {
-                Gesture.HandCrossing = false;
+                Gesture.LoveAndPiece = false;
                 GameController.Play();
             }
         }

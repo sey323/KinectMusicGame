@@ -52,7 +52,8 @@ public class GameController : MonoBehaviour {
     /// </summary>
     void OnLevelWasLoaded()
     {
-     
+        Gesture.setGesturefalse();
+
         //Easyモードのとき
         if (nowSceneName == "GameModeEasy")
         {

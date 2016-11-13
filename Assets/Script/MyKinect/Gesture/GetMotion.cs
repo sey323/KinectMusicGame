@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
+using UnityEngine;
+using System.Collections;
 using UnityEngine;
 using Kinect;
 
@@ -18,90 +16,97 @@ public class GetMotion : MonoBehaviour
 
     private GameObject[] _bones; //internal handle for the bones of the model
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     void Update()
     {
-        if (player == -1)
-            return;
-        //update all of the bones positions
-        if (sw.pollSkeleton())
+        try
         {
-            //Both Hand Rising pettern
-            if (RisingHand(11) && RisingHand(7))
+            if (player == -1)
+                return;
+            //update all of the bones positions
+            if (sw.pollSkeleton())
             {
-                if (CrossHitCheck(5, 7, 10, 12))
+                //Both Hand Rising pettern
+                if (RisingHand(11) && RisingHand(7))
                 {
-                    print("Love And Piece");
+                    if (CrossHitCheck(5, 7, 10, 12))
+                    {
+                        //print("Love And Piece");
+                    }
+                    else
+                    {
+                        //print("MESHIA");
+                    }
                 }
-                else
-                {
-                    print("MESHIA");
-                }
-            }
 
-            //Right Hand Motion pettern
-            else if (RisingHand(11))
-            {
-                if (WavingHand(10, 0.5, 1.2))
+                //Right Hand Motion pettern
+                else if (RisingHand(11))
                 {
-                    print("RightHand is waving");
+                    if (WavingHand(10, 0.5, 1.2))
+                    {
+                        //print("RightHand is waving");
+                    }
+                    else if (WavingHand(10, 1.3, 100))
+                    {
+                        //print("RightHand is big waving ");
+                    }
+                    else if (PushingHand(10, 0.5, 1.2))
+                    {
+                        //print("RightHand is pushing");
+                    }
+                    else if (PushingHand(10, 1.3, 100))
+                    {
+                        //print("RightHand is pushing hardly");
+                    }
+                    else
+                    {
+                        //print("Right hund is Rising");
+                        Gesture.RightHandRising = true;
+                        StartCoroutine("isGesture");
+                    }
                 }
-                else if (WavingHand(10, 1.3, 100))
+                //Left Hand Motion pettern
+                else if (RisingHand(7))
                 {
-                    print("RightHand is big waving ");
-                }
-                else if (PushingHand(10, 0.5, 1.2))
-                {
-                    print("RightHand is pushing");
-                }
-                else if (PushingHand(10, 1.3, 100))
-                {
-                    print("RightHand is pushing hardly");
-                }
-                else
-                {
-                    print("Right hund is Rising");
-                }
-            }
-            //Left Hand Motion pettern
-            else if (RisingHand(7))
-            {
-                if (WavingHand(6, 0.5, 1.2))
-                {
-                    print("LeftHand is waving");
-                }
-                else if (WavingHand(6, 1.3, 100))
-                {
-                    print("LeftHand is big waving ");
-                }
-                else if (PushingHand(6, 0.5, 1.2))
-                {
-                    print("LeftHand is pushing");
-                }
-                else if (PushingHand(6, 1.3, 100))
-                {
-                    print("LeftHand is pushing hardly");
-                }
-                else
-                {
-                    print("Left hund is Rising");
-                }
-            }
+                    if (WavingHand(6, 0.5, 1.2))
+                    {
+                        //print("LeftHand is waving");
+                    }
+                    else if (WavingHand(6, 1.3, 100))
+                    {
+                        //print("LeftHand is big waving ");
+                    }
+                    else if (PushingHand(6, 0.5, 1.2))
+                    {
+                        //print("LeftHand is pushing");
+                    }
+                    else if (PushingHand(6, 1.3, 100))
+                    {
+                        //print("LeftHand is pushing hardly");
+                    }
+                    else
+                    {
+                        //print("Left hund is Rising");
+                        Gesture.HandCrossing = true;
 
-            //
-            else if (CrossHitCheck(6, 7, 10, 11))
-            {
-                print("HandClap");
+                    }
+                }
+
+                //
+                else if (CrossHitCheck(6, 7, 10, 11))
+                {
+                    //print("HandClap");
+                }
+                else if (CrossHitCheck(5, 6, 9, 10))
+                {
+                   // print("Hands are crossing");
+                   
+                }
             }
-            else if (CrossHitCheck(5, 6, 9, 10))
-            {
-                print("Hands are crossing");
-            }
+        }
+        catch(NullReferenceException e)
+        {
+
         }
     }
 
@@ -172,6 +177,11 @@ public class GetMotion : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private IEnumerator isGesture()
+    {
+        yield return new WaitForSeconds(5);
     }
 }
 

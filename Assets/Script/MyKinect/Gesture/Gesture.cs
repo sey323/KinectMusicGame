@@ -34,4 +34,30 @@ public class Gesture :MonoBehaviour
     public static Vector3 RightHandPosition;        //右手の平の位置(Vecter:x,y,z)
     public static Vector3 LeftHandPosition;         //左手の平の位置(Vecter:x,y,z)
 
+    public static void setGesturefalse()
+    {
+        gesture_flag = false;
+
+        LoveAndPiece = false;
+        Meshia = false;
+        OverHeadHandSclap = false;
+
+        RightHandRising = false;
+        RightHandWaving = false;
+        RightHandWavingHardly = false;
+        RightHandPushing = false;
+        RightHandPushingHardly = false;
+
+        LeftHandRising = false;
+        LeftHandWaving = false;
+        LeftHandWavingHardly = false;
+        LeftHandPushing = false;
+        LeftHandPushingHardly = false;
+
+        DownHand = false;
+        Angel = false;
+        HandClap = false;
+        HandCrossing = false;
+
+    }
 }
